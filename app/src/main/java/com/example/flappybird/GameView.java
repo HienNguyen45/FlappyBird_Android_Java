@@ -85,7 +85,7 @@ public class GameView extends SurfaceView implements Runnable {
             } else {
                 // Báo cho Bird nhảy lên (TV3 viết hàm jump())
                 if (bird != null) {
-                    bird.flap();
+                    bird.jump();
                     // soundManager.playJumpSound(); (TV5 làm)
                 }
             }
