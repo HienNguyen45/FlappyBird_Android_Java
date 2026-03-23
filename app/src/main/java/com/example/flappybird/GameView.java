@@ -34,8 +34,10 @@ public class GameView extends SurfaceView implements Runnable {
         this.screenX = screenX;
         this.screenY = screenY;
 
-// Khởi tạo chim ở tọa độ X=200, Y nằm giữa màn hình, kích thước 100x100
-        bird = new Bird(200, screenY / 2, 100, 100);
+        // 1. Khởi tạo các đối tượng (Khi TV3, TV4, TV5 đã xong class của họ)
+        // bird = new Bird(getResources(), screenX, screenY);
+        // pipes = new ArrayList<>();
+        // soundManager = new SoundManager(context);
 
         // Khởi tạo Paint cho UI (TV2 có thể chỉnh sửa thêm)
         textPaint = new Paint();
@@ -70,24 +72,7 @@ public class GameView extends SurfaceView implements Runnable {
 
     // --- NHIỆM VỤ CỦA TV2: HIỂN THỊ (RENDER) ---
     private void draw() {
-        if (holder.getSurface().isValid()) {
-            // Khóa Canvas lại để vẽ
-            Canvas canvas = holder.lockCanvas();
 
-            // Vẽ bầu trời màu xanh da trời
-            canvas.drawColor(Color.CYAN);
-
-            // Vẽ khối vuông đại diện cho con chim của bạn
-            if (bird != null) {
-                Paint birdPaint = new Paint();
-                birdPaint.setColor(Color.RED);
-                // Dùng chính hàm getHitbox() của bạn để lấy tọa độ vẽ
-                canvas.drawRect(bird.getHitbox(), birdPaint);
-            }
-
-            // Mở khóa và hiển thị lên màn hình
-            holder.unlockCanvasAndPost(canvas);
-        }
     }
 
     // --- NHIỆM VỤ CỦA TV1: ĐIỀU KHIỂN ---
@@ -100,7 +85,7 @@ public class GameView extends SurfaceView implements Runnable {
             } else {
                 // Báo cho Bird nhảy lên (TV3 viết hàm jump())
                 if (bird != null) {
-                    bird.flap();
+                    bird.jump();
                     // soundManager.playJumpSound(); (TV5 làm)
                 }
             }
